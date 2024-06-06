@@ -9,19 +9,22 @@ worker_bp = Blueprint('worker', __name__)
 def create_worker_node():
     data = request.get_json()
     name = data.get('name')
+    ip_address = data.get('ip_address')
+    status = data.get('status')
+    workload = data.get('workload')
     # You can add more fields such as IP address, status, etc. as needed
     if not name:
         return jsonify({'error': 'Name is required'}), 400
-    worker_node = WorkerNode(name=name)
+    worker_node = WorkerNode(name=name, ip_address=ip_address, status=status, workload=workload)
     db.session.add(worker_node)
     db.session.commit()
-    return jsonify({'id': worker_node.id, 'name': worker_node.name}), 201
+    return jsonify({'id': worker_node.id, 'name': worker_node.name, 'ip_address':worker_node.ip_address, 'status':worker_node.status, 'worload':worker_node.workload}), 201
 
 # Retrieve all worker nodes
 @worker_bp.route('/show-nodes', methods=['GET'])
 def get_worker_nodes():
     worker_nodes = WorkerNode.query.all()
-    worker_node_list = [{'id': node.id, 'name': node.name} for node in worker_nodes]
+    worker_node_list = [{'id': node.id, 'name': node.name, 'ip_address':node.ip_address, 'status':node.status, 'worload':node.workload} for node in worker_nodes]
     return jsonify(worker_node_list)
 
 # Retrieve a single worker node by its ID

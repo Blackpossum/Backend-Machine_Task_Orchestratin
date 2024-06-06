@@ -1,4 +1,7 @@
+#Task.py
 from Connection.Db_connect import db
+
+
 
 class Task(db.Model):
     __tablename__ = 'tasks'
@@ -6,3 +9,6 @@ class Task(db.Model):
     name = db.Column(db.String(100), nullable=False)
     description = db.Column(db.Text)
     status = db.Column(db.String(20), default='pending')
+    execution_time = db.Column(db.Integer, nullable=False, default=0)
+    remaining_execution_time = db.Column(db.Integer, nullable=False, default=0)
+
