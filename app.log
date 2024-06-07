@@ -1,0 +1,19 @@
+2024-06-07 23:53:27,906 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-06-07 23:53:27,906 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-06-07 23:53:27,907 - werkzeug - INFO -  * Restarting with stat
+2024-06-07 23:53:28,366 - werkzeug - WARNING -  * Debugger is active!
+2024-06-07 23:53:28,368 - werkzeug - INFO -  * Debugger PIN: 812-745-933
+2024-06-07 23:53:47,028 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2024 23:53:47] "GET /sig/monitor-tasks HTTP/1.1" 200 -
+2024-06-07 23:54:17,246 - werkzeug - INFO -  * Detected change in 'D:\\Backend-Machine_Task_Orchestratin\\Config.py', reloading
+2024-06-07 23:54:17,329 - werkzeug - INFO -  * Restarting with stat
+2024-06-07 23:54:17,810 - werkzeug - WARNING -  * Debugger is active!
+2024-06-07 23:54:17,812 - werkzeug - INFO -  * Debugger PIN: 812-745-933
+2024-06-07 23:54:47,343 - werkzeug - INFO -  * Detected change in 'D:\\Backend-Machine_Task_Orchestratin\\Config.py', reloading
+2024-06-07 23:54:47,432 - werkzeug - INFO -  * Restarting with stat
+2024-06-07 23:54:47,925 - werkzeug - WARNING -  * Debugger is active!
+2024-06-07 23:54:47,928 - werkzeug - INFO -  * Debugger PIN: 812-745-933
+2024-06-07 23:55:11,353 - werkzeug - INFO -  * Detected change in 'D:\\Backend-Machine_Task_Orchestratin\\Config.py', reloading
+2024-06-07 23:55:11,438 - werkzeug - INFO -  * Restarting with stat
+2024-06-07 23:55:11,911 - werkzeug - WARNING -  * Debugger is active!
+2024-06-07 23:55:11,913 - werkzeug - INFO -  * Debugger PIN: 812-745-933
