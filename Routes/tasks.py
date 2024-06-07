@@ -27,7 +27,7 @@ def get_tasks():
             task_data = {
                 'id': task.id,
                 'name': task.name,
-                'description': task.description,
+                'programs': task.programs,
                 'status': task.status
             }
             task_list.append(task_data)
@@ -42,7 +42,7 @@ def search_tasks():
     if not name:
         return jsonify({'error': 'Name parameter is required'}), 400
     tasks = Task.query.filter(Task.name.ilike(f'%{name}%')).all()
-    task_list = [{'id': task.id, 'name': task.name, 'description': task.description} for task in tasks]
+    task_list = [{'id': task.id, 'name': task.name, 'programs': task.programs} for task in tasks]
     return jsonify(task_list)
 
 @tasks_bp.route('/update/<int:task_id>', methods=['PUT'])
@@ -52,12 +52,12 @@ def update_task(task_id):
         return jsonify({'error': 'Task not found'}), 404
     data = request.get_json()
     name = data.get('name')
-    description = data.get('description')
+    programs = data.get('programs')
     status=data.get('status')
     if not name:
         return jsonify({'error': 'Name is required'}), 400
     task.name = name
-    task.description = description
+    task.programs =programs
     task.status=status
     db.session.commit()
     return jsonify({'message': 'Task updated successfully'}), 200

@@ -1,4 +1,5 @@
 from flask import Blueprint, jsonify
+from models.tasks_assignment import TaskAssignment
 from models.worker import WorkerNode
 from models.tasks import Task
 from Connection.Db_connect import db
@@ -25,19 +26,17 @@ def distribute_tasks():
         
         # Distribute tasks evenly among available nodes
         for task in tasks:
-            # Get the current node for assignment (round-robin)
             current_node = available_nodes[node_index % len(available_nodes)]
-            
-            # Assign the task to the current node
             task.status = 'assigned'
             task.assigned_node_id = current_node.id
             
+            # Create task assignment entry
+            task_assignment = TaskAssignment(task_id=task.id, node_id=current_node.id)
+            db.session.add(task_assignment)
             # Increment the index for round-robin assignment
+
             node_index += 1
-        
-        # Update the status of tasks in the database
         db.session.commit()
-        
         return jsonify({'message': 'Tasks distributed successfully'}), 200
     except Exception as e:
         print(e)

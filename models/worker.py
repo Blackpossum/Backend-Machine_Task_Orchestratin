@@ -1,5 +1,6 @@
 #worker.py
 from Connection.Db_connect import db
+from sqlalchemy.orm import relationship
 
 class WorkerNode(db.Model):
     __tablename__ = 'worker_nodes'
@@ -9,5 +10,4 @@ class WorkerNode(db.Model):
     status = db.Column(db.String(20), default='active')
     workload = db.Column(db.Integer, default=0)
 
-
-    # tasks = db.relationship('TasksAssignment', back_populates='node')
+    tasks_assignment = db.relationship('TaskAssignment', back_populates='node') 

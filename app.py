@@ -2,6 +2,8 @@ from flask import Flask
 from Routes.tasks import tasks_bp
 from Routes.distribute_task import task_distribution_bp
 from Routes.worker_nodes import worker_bp
+from Routes.cnc_crud import cncCrud_bp
+from Routes.tasks_monitoring import task_monitoring_bp
 from Connection.Db_connect import db
 from dotenv import load_dotenv
 import os
@@ -14,6 +16,8 @@ app = Flask(__name__)
 app.register_blueprint(tasks_bp, url_prefix='/sig/tasks')
 app.register_blueprint(task_distribution_bp, url_prefix='/sig/')
 app.register_blueprint(worker_bp, url_prefix='/sig/worker-nodes')
+app.register_blueprint(cncCrud_bp, url_prefix='/cnc-job')
+app.register_blueprint(task_monitoring_bp, url_prefix='/sig')
 
 app.config['SQLALCHEMY_DATABASE_URI'] = Server_uri
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
