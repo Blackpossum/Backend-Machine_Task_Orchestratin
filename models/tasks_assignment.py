@@ -15,5 +15,6 @@ class TaskAssignment(db.Model):
     status = db.Column(db.String(20), default='pending')
 
     node = db.relationship('WorkerNode', back_populates='tasks_assignment')
+    task = db.relationship('Task', back_populates='task_assignments')
     
     

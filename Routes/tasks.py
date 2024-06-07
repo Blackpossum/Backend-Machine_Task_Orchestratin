@@ -9,13 +9,13 @@ tasks_bp = Blueprint('tasks', __name__)
 def create_task():
     data = request.get_json()
     name = data.get('name')
-    description = data.get('description')
+    program = data.get('program')
     if not name:
         return jsonify({'error': 'Name is required'}), 400
-    task = Task(name=name, description=description)
+    task = Task(name=name, program=program)
     db.session.add(task)
     db.session.commit()
-    return jsonify({'id': task.id, 'name': task.name, 'description': task.description}), 201
+    return jsonify({'id': task.id, 'name': task.name, 'program': task.program}), 201
 
 @tasks_bp.route('/show-tasks', methods=['GET'])
 def get_tasks():
@@ -27,7 +27,7 @@ def get_tasks():
             task_data = {
                 'id': task.id,
                 'name': task.name,
-                'programs': task.programs,
+                'program': task.program,
                 'status': task.status
             }
             task_list.append(task_data)
@@ -42,7 +42,7 @@ def search_tasks():
     if not name:
         return jsonify({'error': 'Name parameter is required'}), 400
     tasks = Task.query.filter(Task.name.ilike(f'%{name}%')).all()
-    task_list = [{'id': task.id, 'name': task.name, 'programs': task.programs} for task in tasks]
+    task_list = [{'id': task.id, 'name': task.name, 'program': task.program} for task in tasks]
     return jsonify(task_list)
 
 @tasks_bp.route('/update/<int:task_id>', methods=['PUT'])
@@ -52,12 +52,12 @@ def update_task(task_id):
         return jsonify({'error': 'Task not found'}), 404
     data = request.get_json()
     name = data.get('name')
-    programs = data.get('programs')
+    program = data.get('program')
     status=data.get('status')
     if not name:
         return jsonify({'error': 'Name is required'}), 400
     task.name = name
-    task.programs =programs
+    task.program =program
     task.status=status
     db.session.commit()
     return jsonify({'message': 'Task updated successfully'}), 200
