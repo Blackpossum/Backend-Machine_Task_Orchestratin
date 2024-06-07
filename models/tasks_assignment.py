@@ -1,7 +1,6 @@
 from Connection.Db_connect import db
 from models.tasks import Task
 from models.worker import WorkerNode
-from sqlalchemy.orm import relationship
 from datetime import datetime
 
 
