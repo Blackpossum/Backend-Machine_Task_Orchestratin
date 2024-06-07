@@ -1,7 +1,5 @@
 from flask import Flask
 from Logging_config import setup_logging
-from Config import app
-from models import *
 from Routes.tasks import tasks_bp
 from Routes.distribute_task import task_distribution_bp
 from Routes.worker_nodes import worker_bp
